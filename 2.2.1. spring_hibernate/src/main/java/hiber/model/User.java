@@ -31,7 +31,8 @@ public class User {
               '}';
    }
 
-   @OneToOne(mappedBy = "user")
+   @OneToOne(cascade = CascadeType.ALL,
+           mappedBy = "user")
    private Car car;
    public User() {}
    
