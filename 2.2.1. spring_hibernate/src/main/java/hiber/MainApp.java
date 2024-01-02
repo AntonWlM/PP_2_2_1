@@ -31,11 +31,11 @@ public class MainApp {
       userService.add(user2.setCar(car2).getUser(user2));
       userService.add(user3.setCar(car3).getUser(user3));
 
-      try {
+      try {//todo: try_catch(Exception) ..указал в каком слое должно быть, но не в main
          System.out.println("User with car 1");
          System.out.println(userService.getUserByCar("Mazda", 6));
       } catch (Exception e) {
-         System.out.println("User c автомобилем Mazda 6 не найден");
+         System.out.println("User c автомобилем Mazda 6 не найден");//todo: логирование (пока иммитация) должна быть на слое service
       }
       try {
          System.out.println("User with car 2");

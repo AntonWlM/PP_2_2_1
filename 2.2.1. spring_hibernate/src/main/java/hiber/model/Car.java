@@ -12,7 +12,8 @@ public class Car {
     private String model;
 
     @Column(name = "series")
-    private int series;
+    private int series;//todo: разделяем пустой строкой.. codeStyle
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "users_id")
     private User user;
