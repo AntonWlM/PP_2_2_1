@@ -11,9 +11,8 @@ import java.util.List;
 @Repository
 public class UserDaoImp implements UserDao {
 
-   private SessionFactory sessionFactory;//todo: что подсказывает IDE?
+   private final SessionFactory sessionFactory;
 
-   //todo: слоя dao нет - есть уже слой repository
 
    @Autowired
    public UserDaoImp(SessionFactory sessionFactory) {
@@ -22,18 +21,18 @@ public class UserDaoImp implements UserDao {
 
    @Override
    public void add(User user) {
-      sessionFactory.getCurrentSession().save(user);//todo: Session (именно Session) обернуть в try_catch на каждом методе (не только на этом, в смысле на каждом)
+      sessionFactory.getCurrentSession().save(user);
    }
 
    @Override
    @SuppressWarnings("unchecked")
-   public List<User> listUsers() {//todo: наименование переменной - действие, например: getUserList()
-      TypedQuery<User> query = sessionFactory.getCurrentSession().createQuery("from User");//todo: ..getUserListQuery (везде по коду правильный codeStyle и naming)
+   public List<User> listUsers() {
+      TypedQuery<User> query = sessionFactory.getCurrentSession().createQuery("from User");
       return query.getResultList();
    }
 
    @Override
-   @SuppressWarnings("unchecked")//todo: нужно?
+   @SuppressWarnings("unchecked")
    public User getUserByCar(String model, int series) {//todo: переходим с примитивов к ссылочным типам
       String hql = "from User user where user.car.model = :model and user.car.series = :series";//todo: не обязательно выносить в отдельную переменную
       TypedQuery<User> query = sessionFactory.getCurrentSession().createQuery(hql);

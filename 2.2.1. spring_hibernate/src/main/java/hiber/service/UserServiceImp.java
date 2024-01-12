@@ -16,7 +16,8 @@ public class UserServiceImp implements UserService {
    public UserServiceImp(UserDao userDao) {
       this.userDao = userDao;
    }
-   @Transactional
+
+   @Transactional//todo: выносится над классом, над нужными методами - @Transactional(readOnly = true) оставляем
    @Override
    public void add(User user) {
       userDao.add(user);
@@ -27,6 +28,7 @@ public class UserServiceImp implements UserService {
    public List<User> listUsers() {
       return userDao.listUsers();
    }
+
    @Transactional(readOnly = true)
    @Override
    public User getUserByCar(String model, int series) {
